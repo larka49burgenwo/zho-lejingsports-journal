@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>爱游戏 · 信息卡片介绍</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f4f9fd;
+            color: #1b2b3b;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.4rem 1.2rem 4rem;
+        }
+
+        /* 主视觉区域 */
+        .hero {
+            background: linear-gradient(135deg, #0b4a4f 0%, #1b6f6b 80%);
+            border-radius: 32px;
+            padding: 3.2rem 2.4rem;
+            margin-bottom: 3.2rem;
+            color: #edf9f7;
+            box-shadow: 0 12px 28px -8px rgba(0, 60, 60, 0.25);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 680px;
+            margin: 0 0 0.6rem;
+            color: #ceefe9;
+        }
+
+        .hero .sub {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            color: #daf5f0;
+        }
+
+        /* 网格卡片区 */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            margin-bottom: 3.6rem;
+        }
+
+        .card {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 24px;
+            padding: 2rem 1.6rem;
+            box-shadow: 0 4px 14px rgba(5, 70, 70, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            border: 1px solid rgba(26, 120, 115, 0.08);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px -12px rgba(14, 80, 80, 0.18);
+            border-color: rgba(26, 138, 130, 0.25);
+        }
+
+        .card .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: #e1f2f0;
+            border-radius: 16px;
+            color: #0e625e;
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin: 0.2rem 0 0.6rem;
+            font-weight: 600;
+            color: #0b4343;
+        }
+
+        .card p {
+            margin: 0.2rem 0;
+            font-size: 0.95rem;
+            color: #2b4a4a;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #deefe9;
+            color: #11524f;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.6rem;
+            font-weight: 500;
+        }
+
+        /* 两栏自然段落区 */
+        .context-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            background: #ffffffc7;
+            backdrop-filter: blur(6px);
+            padding: 2.2rem 1.8rem;
+            border-radius: 32px;
+            border: 1px solid rgba(24, 108, 104, 0.08);
+            margin-bottom: 3rem;
+        }
+
+        .context-block .text-section {
+            flex: 1;
+        }
+
+        .context-block h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 0.8rem;
+            color: #0c4b48;
+            border-left: 5px solid #2c908a;
+            padding-left: 0.9rem;
+        }
+
+        .context-block p {
+            margin: 0.8rem 0;
+            font-size: 1rem;
+            color: #1e3a3a;
+        }
+
+        .context-block a {
+            color: #0f786e;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1.5px dashed #74b7af;
+            transition: border-bottom 0.2s;
+        }
+
+        .context-block a:hover {
+            border-bottom: 2px solid #175b55;
+            color: #06443f;
+        }
+
+        .faq-mini {
+            margin-top: 0.4rem;
+            background: #f2faf8;
+            padding: 1.4rem 1.6rem;
+            border-radius: 24px;
+        }
+
+        .faq-mini summary {
+            font-weight: 600;
+            color: #114f4b;
+            cursor: pointer;
+            padding: 0.1rem 0;
+            font-size: 1.05rem;
+        }
+
+        .faq-mini p {
+            margin: 0.6rem 0 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-soft {
+            display: inline-block;
+            background: #1b756e;
+            color: #f1fffc;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: none;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 50, 40, 0.1);
+        }
+
+        .btn-soft:hover {
+            background: #0f5d57;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #4b6b69;
+            border-top: 1px solid #c2dbd6;
+            padding-top: 1.6rem;
+            margin-top: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+
+        /* 桌面间距调整 */
+        @media (min-width: 620px) {
+            .grid-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 { font-size: 3rem; }
+        }
+
+        @media (min-width: 860px) {
+            .grid-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .context-block {
+                flex-direction: row;
+                gap: 3rem;
+            }
+            .context-block .text-section {
+                flex: 1;
+            }
+            .page {
+                padding: 3.2rem 2.4rem 5rem;
+            }
+        }
+
+        /* 小调整 */
+        .highlight-badge {
+            display: inline-block;
+            background: #d1eae4;
+            padding: 0.15rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: #115551;
+            letter-spacing: 0.3px;
+        }
+
+        .inline-tip {
+            background: #e9f6f2;
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 主视觉 -->
+        <div class="hero">
+            <h1>爱游戏 · 再次遇见</h1>
+            <p>信息、观点与收藏的整合页。无论你是新近留意，还是老朋友回头，这里都值得你放慢脚步——了解平台如何组织内容，以及它适合哪些人。</p>
+            <div class="sub">📌 持续关注 · 不迷路</div>
+        </div>
+
+        <!-- 网格卡片：用途 & 人群 -->
+        <div class="grid-cards">
+            <div class="card">
+                <div class="icon">🗂️</div>
+                <h3>信息收藏库</h3>
+                <p>将值得回顾的游戏资讯、专题解析与社区动态整理为结构化卡片。支持按主题筛选，适合需要高效梳理信息的读者。</p>
+                <span class="tag">分类浏览</span>
+            </div>
+            <div class="card">
+                <div class="icon">🎯</div>
+                <h3>深度阅读线索</h3>
+                <p>不只罗列表面消息，更提供背景脉络、考据与多视角解读。适合对游戏设计、剧情、行业演变有好奇心的爱好者。</p>
+                <span class="tag">知识向</span>
+            </div>
+            <div class="card">
+                <div class="icon">👥</div>
+                <h3>适合人群</h3>
+                <p>单机与网游玩家、独立游戏探索者、游戏文化研究者、内容创作者——只要你对“玩”这件事有认真态度，都能找到共鸣。</p>
+                <span class="tag">多元包容</span>
+            </div>
+        </div>
+
+        <!-- 自然链接段落 + FAQ 摘要 -->
+        <div class="context-block">
+            <div class="text-section">
+                <h2>再访与收藏的理由</h2>
+                <p>当你反复回到一个信息站点，多半因为它持续提供可靠、有启发的内容。<a href="https://official-zh-i-game.com.cn">爱游戏</a>在沉淀游戏相关内容时，注重条理与温度，而非短暂的热点。页面设计以卡牌式信息块呈现，让你能快速定位感兴趣的领域。</p>
+                <p>对于希望保留阅读轨迹的访客，平台支持简单的收藏与标记功能（需注册帐户）。你可以将喜欢的专题、分析或列表加入个人书架，便于日后检索。这也是许多研究者与资深玩家选择长期关注的原因之一。</p>
+                <p>如果你恰好喜欢整理游戏笔记、记录通关感受或对比不同版本的设计思路，这里的结构也许能提供参照。<span class="inline-tip">提示：</span> 定期访问首页会发现卡片内容随专题更新，保持一定的信息弹性。</p>
+            </div>
+            <div class="text-section">
+                <h2>常见疑问 · 简要</h2>
+                <div class="faq-mini">
+                    <details>
+                        <summary>内容主要来自哪里？</summary>
+                        <p>平台鼓励原创编译与深度整合，部分信息引用自开发者访谈、数字档案与可信游戏媒体，并附有来源说明。非新闻聚合类站点。</p>
+                    </details>
+                    <details>
+                        <summary>能否保存我感兴趣的卡片？</summary>
+                        <p>注册后可使用“收藏夹”功能，将卡片或专题存入个人空间。目前收藏夹支持标签备注，方便二次归类。</p>
+                    </details>
+                    <details>
+                        <summary>移动端体验如何？</summary>
+                        <p>卡片式布局完全适配手机竖屏，触摸区域经过放大，导航精简。建议使用系统自带浏览器或 Chrome 以获得最佳渲染。</p>
+                    </details>
+                </div>
+                <div style="margin-top: 1.2rem;">
+                    <span class="highlight-badge">📎 持续关注 · 收藏不迷路</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部提示 + 再次出现链接 -->
+        <div class="footnote">
+            <span>如果您对游戏文化、设计解析抱有持续兴趣，不妨将 <a href="https://official-zh-i-game.com.cn" style="border-bottom: 1px solid #4a7d78; text-decoration: none;">爱游戏</a> 加入书签栏。</span>
+            <span style="opacity: 0.7;">— 信息卡片 · 定期迭代 —</span>
+        </div>
+
+        <!-- 低调 extra 链接 自然嵌在句子中 -->
+        <div style="margin-top: 1.2rem; font-size: 0.9rem; color: #2f605b; background: #e4f2ed; padding: 0.8rem 1.4rem; border-radius: 60px; text-align: center;">
+            💡 如果你刚开始了解这个内容源，可以先浏览几篇专题，再决定是否长期关注 <a href="https://official-zh-i-game.com.cn" style="color: #074d45; text-decoration: underline solid #3c9b8f 1px; text-underline-offset: 3px;">爱游戏</a> 及其后续更新。
+        </div>
+    </div>
+</body>
+</html>
